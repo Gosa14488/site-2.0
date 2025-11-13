@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff512f">
+
+<!-- iOS поддержка -->
+<link rel="apple-touch-icon" href="icon-512.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>FireGuard Dictionary App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgb(211,211,211);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 🔹 Шапка */
+        header {
+            background: #222222;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 40px;
+            gap: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* 🔹 Главная секция */
+        section.hero {
+            background: linear-gradient(to bottom, #00008B 0%, #004895 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        section.hero h2 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            /* Градиентный текст */
+            background: linear-gradient(90deg, #FFE53B, #FF2525);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        section.hero p {
+            font-size: 32px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #FFE53B, #FF2525);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        section.hero .btn {
+            display: inline-block;
+            background: #0078d7;
+            color: white;
+            text-decoration: none;
+            padding: 20px 30px;
+            border-radius: 5px;
+            font-size: 22px;
+            transition: background 0.3s;
+        }
+
+        section.hero .btn:hover {
+            background:#005bb5;
+        }
+
+        /* 🔹 О нас (описание работы) */
+        section.about {
+            padding: 50px 20px;
+            text-align: center;
+            font-size: 22px;
+        }
+        section.about h2 {
+            font-size: 30px;
+            color: #06080a;
+            margin-bottom: 50px;
+        }
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 130px;
+            flex-wrap: wrap;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid rgba(0,0,0,0.2);
+            border-radius: 30px;
+            padding: 20px 35px;
+            width: 280px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .feature h3 {
+            color: #0078d7;
+            margin-bottom: 8px;
+        }
+        .feature p {
+            color: #333;
+            font-size: 15px;
+        }
+        .feature img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 🔹 Переводчик */
+        #box {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: center;
+            margin: 0 auto 50px auto;
+        }
+        .text-between {
+            padding: 30px;
+            text-align: center;
+            margin: 40px 0;
+            font-size: 22px;
+        }
+        .additional-text {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+            font-size: 1.5 rem;
+        }
+        #box h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #0078d7;
+
+}
+        #box input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        #box button {
+            background: #0078d7;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px 0;
+        }
+        #box button:hover {
+            background: #005bb5;
+        }
+        #box p {
+            font-size: 18px;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        /* 🔹 Модальное окно (результат перевода) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 25px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .modal-content h2 {
+            color: #0078d7;
+            margin-bottom: 10px;
+        }
+        .modal-content img {
+            width: 80%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .modal-content p {
+            font-size: 18px;
+            color: #333;
+            margin: 5px 0;
+        }
+        .modal-translation {
+            font-style: italic;
+            color: #444;
+        }
+        .close {
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            font-size: 26px;
+            font-weight: bold;
+            color: #555;
+            cursor: pointer;
+        }
+       /* 🌈 Красочная вкладка “О нас” */
+.about-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #ff512f, #dd2476, #1e3c72);
+    background-size: 400% 400%;
+    animation: gradientFlow 10s ease infinite;
+    overflow-y: auto;
+    z-index: 9999;
+    opacity: 0;
+    transform: scale(0.98);
+    transition: all 0.4s ease;
+    color: white;
+}
+.about-overlay.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+}
+@keyframes gradientFlow {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+.about-content {
+    max-width: 900px;
+    margin: 80px auto;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease;
+}
+.about-content h2 {
+    text-align: center;
+    font-size: 34px;
+    background: linear-gradient(90deg, #fff, #f0d000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.about-content p {
+    font-size: 18px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    text-align: justify;
+}
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+.close-about {
+    position: fixed;
+    top: 20px; left: 20px;
+    background: #fff;
+    color: #ff512f;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+.close-about:hover {
+    background: #ff512f;
+    color: #fff;
+}
+
+        /* 🔹 Подвал */
+        footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        /* Мобильная адаптация (небольшая) */
+        @media (max-width: 600px) {
+            section.hero h2 { font-size: 28px; }
+            section.hero p { font-size: 20px; }
+            #box { width: 90%; padding: 20px; }
+            .features { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 🔹 Шапка -->
+<header>
+    <h1>FireGuard Dictionary App</h1>
+
+
+<nav>
+        <ul>
+            <li><a href="#home">Главная</a></li>
+            <!-- Ссылка оставляем якорной: обработчик JS откроет всплывающую страницу -->
+            <li><a href="#about-us">О нас</a></li>
+            <li><a href="#box">Эквивалент</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- 🔹 Главная секция -->
+<section class="hero" id="home">
+    <h2>Точный термин - здесь и сейчас</h2>
+    <p>Мы поможем вам с переводом слов в профессиональной сфере.</p>
+    <a href="#box" class="btn">К переводу!</a>
+</section>
+
+<!-- 🔹 Как работает -->
+<section class="about" id="about">
+    <h2>Как работает наше приложение</h2>
+    <div class="features">
+        <div class="feature">
+            <img src="https://cdn-icons-png.flaticon.com/512/12628/12628496.png" alt="Быстро">
+            <h3>🚀 Быстро</h3>
+            <p>Вводим слово.</p>
+        </div>
+        <div class="feature">
+            <img src="https://cdn-icons-png.flaticon.com/512/4251/4251899.png" alt="Самоподготовка">
+            <h3>🎨 Поиск терминов по категориям</h3>
+            <p>Таблица для изучения слов самостоятельно.</p>
+        </div>
+        <div class="feature">
+            <img src="https://cdn-icons-png.flaticon.com/512/5625/5625642.png" alt="Просто">
+            <h3>💡 Просто</h3>
+            <p>Нажимаем найти и получаем перевод.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 🔹 Переводчик -->
+<div id="box">
+    <h1>↔️ Переводчик</h1>
+    <input type="text" id="word" placeholder="Введите слово">
+    <button id="translateBtn">Перевести</button>
+    <p id="result">Введите слово на английском или русском</p>
+</div>
+
+<!-- 🔹 Модальное окно (результат перевода) -->
+<div id="translationModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+        <span class="close" title="Закрыть">&times;</span>
+        <h2 id="modal-word"></h2>
+        <p class="modal-translation" id="modal-translation"></p>
+        <img id="modal-image" src="" alt="" />
+    </div>
+</div>
+
+<!-- 🔹 Всплывающая страница "О нас" -->
+<!-- 🌈 Новая красивая вкладка “О нас” -->
+<div id="about-page" class="about-overlay">
+    <button id="close-about" class="close-about">← Назад</button>
+    <div class="about-content">
+        <h2>О нас 🔥</h2>
+        <p>Команда <strong>FireGuard Dictionary App</strong> — это студенты и преподаватели Санкт-Петербургского университета ГПС МЧС России. Мы объединили лингвистику, технологии и дух службы, чтобы создать надёжный цифровой словарь спасателя.</p>
+        <p>Наш проект помогает профессионалам находить точные термины, когда счёт идёт на секунды. Ведь в чрезвычайной ситуации важно понимать друг друга без словарей и задержек.</p>
+        <p>🔥 Миссия: стереть языковые барьеры между спасателями по всему миру.</p>
+        <p>🌍 База данных пополняется, чтобы приложение оставалось актуальным инструментом специалистов.</p>
+        <p><strong>Наш девиз:</strong> Точный термин – здесь и сейчас.</p>
+    </div>
+</div>
+
+<!-- 🔹 Подвал -->
+<footer>
+    <p>© 2025 FireGuard Dictionary App.</p>
+</footer>
+
+<script>
+    
+    const dictionary = {
+        "combustion": { translation: "горение", back: "combustion", image: "https://fireman.club/wp-content/uploads/2017/06/gorenie-1.jpg" },
+        "ignition": { translation: "воспламенение", back: "ignition", image: "https://img.desktopwallpapers.ru/other/pics/wide/1920x1200/8fff024186a5d61e2a5a42597995fdb6.jpg" },
+
+
+"flash point": { translation: "точка воспламенения", back: "flash point", image: "https://img.freepik.com/free-vector/fire-location-pin_78370-7485.jpg?semt=ais_hybrid&w=740&q=80" },
+        "extinguishing agent": { translation: "огнетушащее вещество", back: "extinguishing agent", image: "https://cs5.pikabu.ru/post_img/2014/12/05/10/1417796430_985123611.jpg" },
+        "carbon dioxide": { translation: "углекислый газ", back: "carbon dioxide", image: "https://cdn-icons-png.flaticon.com/512/834/834431.png" },
+        "dry chemical": { translation: "порошковое (сухое химическое) вещество", back: "dry chemical", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ49vDgPGHzLYkTZs20SMDgpt43ywU4sv4n5A&s" },
+        "fire extinguisher": { translation: "огнетушитель", back: "fire extinguisher", image: "https://static.vecteezy.com/system/resources/previews/026/333/021/non_2x/fire-extinguisher-icon-firefighter-illustration-sign-help-symbol-vector.jpg" },
+        "sprinkler system": { translation: "спринклерная система", back: "sprinkler system", image: "https://img.freepik.com/premium-vector/fire-sprinkler-icon-vector-set-collection-web_1223784-766.jpg" },
+        "smoke detector": { translation: "дымовой извещатель", back: "smoke detector", image: "https://img.freepik.com/premium-vector/smoke-detector-icon-symbol-fire-alarm-logo-sign-fire-safety-equipment-vector-illustration-image_246263-613.jpg" },
+        "fire engine": { translation: "пожарная машина", back: "fire engine", image: "https://www.unfire01.ru/uploads/pics/mashina-kamaz-ac-50-40-unfire01.ru_01.jpg" },
+        "ladder truck": { translation: "автолестница", back: "ladder truck", image: "https://media.istockphoto.com/id/1290261558/vector/red-fire-truck-vehicle-of-emergency-firefighters-design-element-side-view-vector.jpg?s=612x612&w=0&k=20&c=HVw7AZ4ZiAag6QFr4hWoyWk4o-elO97GMvigOZD7eeg=" },
+        "tanker": { translation: "автоцистерна", back: "tanker", image: "https://kamaz-chel.ru/upload/iblock/a4d/z2j8pjx6swlm45o67uv032s5o2pl8s83.png" },
+        "power saw": { translation: "бензорез", back: "power saw" },
+        "ring saw": { translation: "кольцерез", back: "ring saw" },
+        "rescue chainsaw": { translation: "аварийно-спасательная бензопила", back: "rescue chainsaw" },
+        "reciprocating saw": { translation: "сабельная пила", back: "reciprocating saw" },
+        "rescue winch": { translation: "аварийно-спасательная лебёдка", back: "rescue winch" },
+        "concrete breaker": { translation: "бетонолом", back: "concrete breaker" },
+        "rotary hammer": { translation: "перфоратор", back: "rotary hammer" },
+        "diamond core drill": { translation: "алмазная дрель", back: "diamond core drill" },
+        "hydraulic concrete crusher": { translation: "гидравлическая бетонодробилка", back: "hydraulic concrete crusher" },
+        "hydraulic spreading wedge": { translation: "гидравлический клин", back: "hydraulic spreading wedge" },
+        "high-pressure pneumatic lifting bag": { translation: "пневматический домкрат высокого давления", back: "high-pressure pneumatic lifting bag" },
+        "low-pressure pneumatic lifting bag": { translation: "пневматический домкрат низкого давления", back: "low-pressure pneumatic lifting bag" },
+        "pneumatic sealing device": { translation: "пневматические заглушки, пластыри, клинья", back: "pneumatic sealing device" },
+        "wedge / shim / step block": { translation: "клинья, проставки, ступенчатые упоры", back: "wedge / shim / step block" },
+        "stabilization strut": { translation: "стойка стабилизации", back: "stabilization strut" },
+        "prefabricated and timber shoring structures": { translation: "возводимые инвентарные и деревянные конструкции (шоринг)", back: "prefabricated and timber shoring structures" },
+        "SearchCam 3000": { translation: "телевизионный прибор поиска пострадавших SearchCam 3000", back: "SearchCam 3000" },
+        "Delsar LifeDetector LD3": { translation: "виброакустическое устройство Delsar LifeDetector LD3", back: "Delsar LifeDetector LD3" },
+"RD-400 radar detector": { translation: "радар-детектор РД-400", back: "RD-400 radar detector" },
+        "Hydraulic cutters": { translation: "Гидравлические ножницы", back: "Hydraulic cutters" },
+        "Hydraulic saws": { translation: "Гидравлические пилы (дисковые, цепные)", back: "Hydraulic saws" },
+        "Hydraulic spreaders": { translation: "Гидравлические расширители (спредеры)", back: "Hydraulic spreaders" },
+        "Hydraulic combination tools": { translation: "Комбинированные инструменты (кусачки-расширители)", back: "Hydraulic combination tools" },
+        "Hydraulic jacks": { translation: "Гидравлические домкраты (рамные подъемники)", back: "Hydraulic jacks" },
+        "Hydraulic rams": { translation: "Гидравлические силовые цилиндры (цилиндры высокого давления)", back: "Hydraulic rams" },
+        "Hydraulic power units": { translation: "Гидравлические станции", back: "Hydraulic power units" },
+        "High-pressure hoses": { translation: "Рукава высокого давления (РВД)", back: "High-pressure hoses" },
+        "Quick-release couplings": { translation: "Быстросъемные соединения", back: "Quick-release couplings" },
+        "Strut and accessory kits": { translation: "Комплекты упоров и насадок", back: "Strut and accessory kits" },
+        "Manual hydraulic pump": { translation: "Ручной гидравлический насос", back: "Manual hydraulic pump" },
+        "Electro-hydraulic power unit": { translation: "Электрогидравлическая станция", back: "Electro-hydraulic power unit" },
+        "Petrol-driven hydraulic power unit": { translation: "Бензогидравлическая станция", back: "Petrol-driven hydraulic power unit" },
+        "firefighter axe": { translation: "пожарный топор", back: "firefighter axe" },
+        "pickhead axe": { translation: "пожарный топор-кувалда", back: "pickhead axe" },
+        "pry bar": { translation: "пожарный лом", back: "pry bar" },
+        "pike pole": { translation: "пожарный багор", back: "pike pole" },
+        "Halligan bar": { translation: "инструмент Хулиган (Halligan Tool)", back: "Halligan bar" }
+    };
+
+    // ---------- Модальное окно ----------
+    const modal = document.getElementById("translationModal");
+    const closeBtn = document.querySelector(".close");
+
+    function detectLanguage(word) {
+        // Если есть кириллица → русский
+        return /[а-яё]/i.test(word) ? "ru" : "en";
+    }
+
+    function translateWord() {
+        const inputRaw = document.getElementById('word').value.trim();
+        const input = inputRaw.toLowerCase();
+        const resultEl = document.getElementById('result');
+
+        // Проверка на пустое поле
+        if (!input) {
+            resultEl.textContent = "⚠️ Введите слово!";
+            return;
+        }
+
+        const lang = detectLanguage(inputRaw);
+        let data = null;
+
+        // Поиск перевода для английского слова
+        if (lang === "en") {
+            data = dictionary[input] || null;
+        } else {
+            // Поиск перевода для русского слова (ищем совпадение в поле translation)
+            const foundKey = Object.keys(dictionary).find(key => {
+                const val = dictionary[key].translation || "";
+                return val.toLowerCase() === input;
+            });
+            if (foundKey) {
+                // Обратный перевод: ключ — английский, translation — русский
+                data = {
+                    translation: foundKey,
+                    back: dictionary[foundKey].translation,
+                    image: dictionary[foundKey].image
+                };
+            }
+        }
+
+        // Если перевод не найден, показываем сообщение
+        if (!data) {
+            resultEl.textContent = "❌ Перевод не найден.";
+        } else {
+            // Если перевод найден, обновляем результат
+            // Для английского input — оригинал, data.translation (русский) — перевод; data.back может быть заполнено
+            if (lang === "en") {
+                const backText = data.back ? (" — " + data.back) : "";
+                resultEl.textContent = "Перевод: " + data.translation + backText;
+
+document.getElementById("modal-word").textContent = inputRaw;
+                document.getElementById("modal-translation").textContent = data.translation + (data.back ? (" — " + data.back) : "");
+            } else {
+                // Ввод был на русском — show English equivalent (data.translation holds English key)
+                resultEl.textContent = "Перевод: " + data.translation + " — " + data.back;
+                document.getElementById("modal-word").textContent = inputRaw;
+                document.getElementById("modal-translation").textContent = data.translation + " — " + data.back;
+            }
+
+            // Показ изображения если есть
+            const imgEl = document.getElementById("modal-image");
+            if (data.image) {
+                imgEl.src = data.image;
+                imgEl.style.display = "block";
+            } else {
+                imgEl.src = "";
+                imgEl.style.display = "none";
+            }
+
+            modal.style.display = "block";
+            modal.setAttribute('aria-hidden', 'false');
+        }
+    }
+
+    // Закрытие модального окна
+    closeBtn.onclick = () => {
+        modal.style.display = "none";
+        modal.setAttribute('aria-hidden', 'true');
+    };
+    window.onclick = (e) => { if (e.target === modal) { modal.style.display = "none"; modal.setAttribute('aria-hidden', 'true'); } };
+
+    // Enter → перевод
+    document.getElementById('translateBtn').addEventListener('click', translateWord);
+    document.getElementById('word').addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') translateWord();
+    });
+
+    // ---------- Всплывающая страница "О нас" ----------
+    const aboutOverlay = document.getElementById('about-page');
+const aboutLink = document.querySelector('a[href="#about-us"]');
+const closeAbout = document.getElementById('close-about');
+
+aboutLink.addEventListener('click', e => {
+    e.preventDefault();
+    aboutOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+closeAbout.addEventListener('click', () => {
+    aboutOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+});
+window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        aboutOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js")
+        .then(() => console.log("SW registered"))
+        .catch(err => console.error("SW error:", err));
+}
+</script>
+
+</body>
+
+</html>
