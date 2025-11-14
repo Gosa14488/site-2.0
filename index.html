@@ -580,7 +580,7 @@ window.addEventListener('keydown', e => {
 
 <script>
 if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js")
+   navigator.serviceWorker.register("/site-2.0/sw.js");
         .then(() => console.log("SW registered"))
         .catch(err => console.error("SW error:", err));
 }
