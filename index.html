@@ -398,69 +398,56 @@
   Установить приложение
 </button>
 
-<p id="installMessage" style="
-    display:none;
-    text-align:center;
-    color: gray;
-    font-size: 16px;
-    margin-top: 10px;
-"></p>
-
 <script>
 let deferredPrompt = null;
 const installBtn = document.getElementById("installBtn");
-const installMessage = document.getElementById("installMessage");
 
-// Проверяем поддержку PWA
+// Определяем, поддерживает ли браузер установку PWA
 function isPwaSupported() {
     const ua = navigator.userAgent.toLowerCase();
 
+    // Firefox — не поддерживает
     if (ua.includes("firefox")) return false;
+
+    // Яндекс.Браузер для ПК — не поддерживает
     if (ua.includes("yabrowser") && !ua.includes("android")) return false;
+
+    // Safari (iPhone + Mac) — нет beforeinstallprompt
     if (ua.includes("safari") && !ua.includes("chrome")) return false;
 
-    return true;
+    return true; // Chrome / Edge / Android Chrome
 }
 
-// Если браузер НЕ поддерживает установку
+// Если не поддерживается — кнопку не показываем вообще
 if (!isPwaSupported()) {
-    installMessage.style.display = "block";
-    installMessage.innerText =
-        "Ваш браузер не поддерживает установку приложения.";
+    installBtn.style.display = "none";
 }
 
-// Если приложение уже установлено — скрываем кнопку
+// Если приложение уже установлено
 if (window.matchMedia('(display-mode: standalone)').matches) {
     installBtn.style.display = "none";
-    installMessage.style.display = "none";
 }
 
-// Показываем кнопку при разрешении установки
+// Показ кнопки, если браузер разрешил установку
 window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferredPrompt = e;
 
-    installBtn.style.display = "block";
-    installMessage.style.display = "none";
+    // Показываем кнопку только в поддерживаемых браузерах
+    if (isPwaSupported()) {
+        installBtn.style.display = "block";
+    }
 
-    installBtn.addEventListener("click", () => {
+    installBtn.onclick = () => {
         installBtn.style.display = "none";
         deferredPrompt.prompt();
-
-        deferredPrompt.userChoice.then((choice) => {
-            if (choice.outcome === "accepted") {
-                installMessage.style.display = "block";
-                installMessage.innerText = "Приложение установлено!";
-            }
-            deferredPrompt = null;
-        });
-    });
+        deferredPrompt = null;
+    };
 });
 
-// Когда приложение установлено — скрываем кнопку
+// Когда приложение установлено — кнопка исчезает навсегда
 window.addEventListener("appinstalled", () => {
     installBtn.style.display = "none";
-    installMessage.style.display = "none";
 });
 </script>
 <!-- 🔹 Модальное окно (результат перевода) -->
