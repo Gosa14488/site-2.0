@@ -2,20 +2,20 @@
   "name": "FireGuard Dictionary App",
   "short_name": "FireGuard",
   "description": "FireGuard dictionary for firefighters.",
-  "id": "fireguard-app",
-  "start_url": "./",
-  "scope": "./",
+  "id": "/site-2.0/",
+  "start_url": "/site-2.0/",
+  "scope": "/site-2.0/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1a73e8",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "/site-2.0/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icon-512.png",
+      "src": "/site-2.0/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
