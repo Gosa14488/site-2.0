@@ -1,12 +1,12 @@
 const CACHE_NAME = "fireguard-cache-v1";
 
 const ASSETS = [
-    "./",
-    "./index.html",
-    "./manifest.json",
-    "./icon-192.png",
-    "./icon-512.png",
-    "./favicon.ico"
+    "/site-2.0/",
+    "./site-2.0/index.html",
+    "/site-2.0/manifest.json",
+    "/site-2.0/icon-192.png",
+    "/site-2.0/icon-512.png",
+    "/site-2.0/favicon.ico"
 ];
 
 // Установка SW + кеширование
@@ -58,3 +58,4 @@ self.addEventListener("fetch", event => {
         })
     );
 });
+
