@@ -588,6 +588,53 @@ if ("serviceWorker" in navigator) {
 }
 </script>
 
+    <html>
+<head>
+    <!-- твои meta, стили, manifest и т.д. -->
+</head>
+
+<body>
+
+    <!-- весь твой сайт -->
+
+    <!-- вставляешь вот сюда перед закрывающим тегом body -->
+
+    <button id="installBtn" style="
+        display:none;
+        padding: 14px 22px;
+        font-size: 20px;
+        border: none;
+        background: #1a73e8;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 30px auto;
+        display: block;
+    ">
+      Установить приложение
+    </button>
+
+    <script>
+    let deferredPrompt;
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+
+        const btn = document.getElementById("installBtn");
+        btn.style.display = "block";
+
+        btn.addEventListener("click", () => {
+            btn.style.display = "none";
+            deferredPrompt.prompt();
+
+            deferredPrompt.userChoice.then(() => {
+                deferredPrompt = null;
+            });
+        });
+    });
+    </script>
+
 </body>
 
 </html>
