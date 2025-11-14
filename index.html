@@ -383,6 +383,41 @@
     <p id="result">Введите слово на английском или русском</p>
 </div>
 
+    <button id="installBtn" style="
+    display:none;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    background: #1a73e8;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 20px auto 40px auto;
+    display: block;
+">
+  Установить приложение
+</button>
+
+<script>
+let deferredPrompt = null;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    const btn = document.getElementById("installBtn");
+    btn.style.display = "block";
+
+    btn.onclick = () => {
+        btn.style.display = "none";
+        deferredPrompt.prompt();
+
+        deferredPrompt.userChoice.finally(() => {
+            deferredPrompt = null;
+        });
+    };
+});
+</script>
 <!-- 🔹 Модальное окно (результат перевода) -->
 <div id="translationModal" class="modal" aria-hidden="true">
     <div class="modal-content" role="dialog" aria-modal="true">
@@ -588,52 +623,6 @@ if ("serviceWorker" in navigator) {
 }
 </script>
 
-    <html>
-<head>
-    <!-- твои meta, стили, manifest и т.д. -->
-</head>
-
-<body>
-
-    <!-- весь твой сайт -->
-
-    <!-- вставляешь вот сюда перед закрывающим тегом body -->
-
-    <button id="installBtn" style="
-        display:none;
-        padding: 14px 22px;
-        font-size: 20px;
-        border: none;
-        background: #1a73e8;
-        color: white;
-        border-radius: 10px;
-        cursor: pointer;
-        margin: 30px auto;
-        display: block;
-    ">
-      Установить приложение
-    </button>
-
-    <script>
-    let deferredPrompt;
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-
-        const btn = document.getElementById("installBtn");
-        btn.style.display = "block";
-
-        btn.addEventListener("click", () => {
-            btn.style.display = "none";
-            deferredPrompt.prompt();
-
-            deferredPrompt.userChoice.then(() => {
-                deferredPrompt = null;
-            });
-        });
-    });
-    </script>
 
 </body>
 
