@@ -334,7 +334,8 @@
 
 /* ====== Блок "Как работает приложение" ====== */
 .how-app-works {
-    max-width: 1200px;
+    width:100%;
+    max-width: 100%;
     margin: 60px auto;
     text-align: center;
     padding:50px  20px;
@@ -429,18 +430,22 @@
         border-radius: 15px; /* Мягче на маленьком экране */
     }
 
-    .how-app-works h2 {
-        font-size: 22px;
-        margin-bottom: 20px;
-    }
-
-    .steps {
+     .steps {
+        flex-direction: column;
+        align-items: center;
         gap: 15px;
+        width: 100%;
     }
 
     .step {
+        max-width: 90%;   /* <-- теперь карточки занимают экран */
+        width: 90%;
         padding: 20px;
-        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .how-app-works h2 {
+        font-size: 22px;
     }
 }
     </style>
