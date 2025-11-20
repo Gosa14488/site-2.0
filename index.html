@@ -133,56 +133,78 @@
             margin-right: auto;
         }
 
-        /* 🔹 Переводчик */
-        #box {
-            background: white;
-            padding: 25px 30px;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            width: 350px;
-            text-align: center;
-            margin: 0 auto 50px auto;
-        }
-        .text-between {
-            padding: 30px;
-            text-align: center;
-            margin: 40px 0;
-            font-size: 22px;
-        }
-        .additional-text {
-            margin: 30px 0;
-            padding: 20px;
-            background-color: #f9f9f9;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-        #box h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #0078d7;
-
+        /* ======= Блок переводчика ======= */
+#box {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 28px;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.08),
+        0 3px 10px rgba(0, 0, 0, 0.05);
+    width: 90%;                /* ← было 350px, теперь адаптивно */
+    max-width: 900px;          /* ← увеличенный переводчик */
+    margin: 40px auto;
+    text-align: center;
+    transition: 0.3s ease;     /* плавная анимация */
 }
-        #box input {
-            width: 90%;
-            padding: 10px;
-            margin-bottom: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        #box button {
-            background: #0078d7;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 5px 0;
-        }
-        #box button:hover {
-            background: #005bb5;
-        }
+
+/* Лёгкая анимация при наведении */
+#box:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 15px 30px rgba(0,0,0,0.12),
+        0 5px 15px rgba(0,0,0,0.08);
+}
+
+#box h1 {
+    font-size: 32px;
+    color: #0078d7;
+    margin-bottom: 25px;
+}
+
+#box input {
+    width: 95%;
+    padding: 22px 25px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    background: #fafafa;
+    transition: 0.2s ease;
+}
+
+#box input:focus {
+    border-color: #0078d7;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(0,120,215,0.15);
+    outline: none;
+}
+
+#box button {
+    background: #0078d7;
+    color: white;
+    font-size: 20px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.2s ease;
+}
+
+#box button:hover {
+    background: #005fa3;
+}
+
+#box .result {
+    margin-top: 25px;
+    padding: 20px;
+    background: #f1f8ff;
+    border-left: 6px solid #0078d7;
+    border-radius: 8px;
+    font-size: 20px;
+    color: #003f6d;
+}
         #box p {
             font-size: 18px;
             margin-top: 15px;
@@ -310,6 +332,83 @@
     color: #fff;
 }
 
+/* ====== Блок "Как работает приложение" ====== */
+.how-app-works {
+    max-width: 1200px;
+    margin: 60px auto;
+    text-align: center;
+    padding:50px  20px;
+
+    background: linear-gradient(135deg, #7eb8fd, #02479d);
+    border-radius: 25px;
+}
+
+.how-app-works h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, #FFE53B, #FF2525);
+    -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+}
+
+/* Контейнер с карточками */
+.steps {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+/* Каждая карточка — фиксированная одинаковая высота */
+.step {
+    background: #ffffff;
+    padding: 50px;
+    border-radius: 30px;
+
+    flex: 1;
+    max-width: 280px;                /* одинаковая ширина */
+    min-width: 240px;
+    height: 230px;               /* одинаковая высота */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* выравнивание */
+    align-items: center;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.08),
+        0 3px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+
+    transition: none;
+    transform: none;
+}
+
+/* Hover — плавный подъём */
+.step:hover {
+    transform: none;
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.12),
+        0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.step .icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.step h3 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.step p {
+    font-size: 20px;
+    line-height: 1.45;
+    opacity: 0.85;
+}
+
         /* 🔹 Подвал */
         footer {
             background: #000;
@@ -338,7 +437,7 @@
 
 <nav>
         <ul>
-            <li><a href="#home">Главная</a></li>
+            <li><a href="#home-overlay" id = "home-btn"> О приложении</a></li>
             <!-- Ссылка оставляем якорной: обработчик JS откроет всплывающую страницу -->
             <li><a href="#about-us">О нас</a></li>
             <li><a href="#box">Эквивалент</a></li>
@@ -354,31 +453,13 @@
 </section>
 
 <!-- 🔹 Как работает -->
-<section class="about" id="about">
-    <h2>Как работает наше приложение</h2>
-    <div class="features">
-        <div class="feature">
-            <img src="https://cdn-icons-png.flaticon.com/512/12628/12628496.png" alt="Быстро">
-            <h3>🚀 Быстро</h3>
-            <p>Вводим слово.</p>
-        </div>
-        <div class="feature">
-            <img src="https://cdn-icons-png.flaticon.com/512/4251/4251899.png" alt="Самоподготовка">
-            <h3>🎨 Поиск терминов по категориям</h3>
-            <p>Таблица для изучения слов самостоятельно.</p>
-        </div>
-        <div class="feature">
-            <img src="https://cdn-icons-png.flaticon.com/512/5625/5625642.png" alt="Просто">
-            <h3>💡 Просто</h3>
-            <p>Нажимаем найти и получаем перевод.</p>
-        </div>
-    </div>
-</section>
+
 
 <!-- 🔹 Переводчик -->
 <div id="box">
     <h1>↔️ Переводчик</h1>
     <input type="text" id="word" placeholder="Введите слово">
+    <div id="suggestions" class="suggestions-box"></div>
     <button id="translateBtn">Перевести</button>
     <p id="result">Введите слово на английском или русском</p>
 </div>
@@ -394,9 +475,60 @@
     cursor: pointer;
     margin: 30px auto;
     display: block;
+
+    .suggestions-box {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    width: 86%;
+    max-width: 350px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -5px;
+    border-radius: 8px;
+    display: none;
+    z-index: 999;
+}
+
+.suggestions-box div {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.suggestions-box div:hover {
+    background: #f0f0f0;
+}
 ">
+
   Установить приложение
 </button>
+<!-- 🔹 Как работает -->
+<section class="how-app-works">
+    <h2>Как работает наше приложение</h2>
+
+    <div class="steps">
+
+        <div class="step">
+            <div class="icon">📝</div>
+            <h3> Введите слово</h3>
+            <p>Введите слово, фразу или часть термина — алгоритм сам предложит подходящие варианты.</p>
+        </div>
+
+        <div class="step">
+            <div class="icon">🔍</div>
+            <h3> Умный поиск</h3>
+            <p>Приложение анализирует введённый текст и моментально находит нужное значение.</p>
+        </div>
+
+        <div class="step">
+            <div class="icon">⚡</div>
+            <h3> Быстрый перевод</h3>
+            <p>Вы мгновенно получаете точный перевод и дополнительные подсказки.</p>
+        </div>
+
+    </div>
+</section>
 
 <script>
 let deferredPrompt = null;
@@ -468,8 +600,8 @@ window.addEventListener("appinstalled", () => {
         <h2>О нас 🔥</h2>
         <p>Команда <strong>FireGuard Dictionary App</strong> — это студенты и преподаватели Санкт-Петербургского университета ГПС МЧС России. Мы объединили лингвистику, технологии и дух службы, чтобы создать надёжный цифровой словарь спасателя.</p>
         <p>Наш проект помогает профессионалам находить точные термины, когда счёт идёт на секунды. Ведь в чрезвычайной ситуации важно понимать друг друга без словарей и задержек.</p>
-        <p>🔥 Миссия: стереть языковые барьеры между спасателями по всему миру.</p>
-        <p>🌍 База данных пополняется, чтобы приложение оставалось актуальным инструментом специалистов.</p>
+        <p> Миссия: стереть языковые барьеры между спасателями по всему миру.</p>
+        <p> База данных пополняется, чтобы приложение оставалось актуальным инструментом специалистов.</p>
         <p><strong>Наш девиз:</strong> Точный термин – здесь и сейчас.</p>
     </div>
 </div>
@@ -496,43 +628,43 @@ window.addEventListener("appinstalled", () => {
         "fire engine": { translation: "пожарная машина", back: "fire engine", image: "https://www.unfire01.ru/uploads/pics/mashina-kamaz-ac-50-40-unfire01.ru_01.jpg" },
         "ladder truck": { translation: "автолестница", back: "ladder truck", image: "https://media.istockphoto.com/id/1290261558/vector/red-fire-truck-vehicle-of-emergency-firefighters-design-element-side-view-vector.jpg?s=612x612&w=0&k=20&c=HVw7AZ4ZiAag6QFr4hWoyWk4o-elO97GMvigOZD7eeg=" },
         "tanker": { translation: "автоцистерна", back: "tanker", image: "https://kamaz-chel.ru/upload/iblock/a4d/z2j8pjx6swlm45o67uv032s5o2pl8s83.png" },
-        "power saw": { translation: "бензорез", back: "power saw" },
-        "ring saw": { translation: "кольцерез", back: "ring saw" },
-        "rescue chainsaw": { translation: "аварийно-спасательная бензопила", back: "rescue chainsaw" },
-        "reciprocating saw": { translation: "сабельная пила", back: "reciprocating saw" },
-        "rescue winch": { translation: "аварийно-спасательная лебёдка", back: "rescue winch" },
-        "concrete breaker": { translation: "бетонолом", back: "concrete breaker" },
-        "rotary hammer": { translation: "перфоратор", back: "rotary hammer" },
-        "diamond core drill": { translation: "алмазная дрель", back: "diamond core drill" },
-        "hydraulic concrete crusher": { translation: "гидравлическая бетонодробилка", back: "hydraulic concrete crusher" },
-        "hydraulic spreading wedge": { translation: "гидравлический клин", back: "hydraulic spreading wedge" },
-        "high-pressure pneumatic lifting bag": { translation: "пневматический домкрат высокого давления", back: "high-pressure pneumatic lifting bag" },
-        "low-pressure pneumatic lifting bag": { translation: "пневматический домкрат низкого давления", back: "low-pressure pneumatic lifting bag" },
-        "pneumatic sealing device": { translation: "пневматические заглушки, пластыри, клинья", back: "pneumatic sealing device" },
-        "wedge / shim / step block": { translation: "клинья, проставки, ступенчатые упоры", back: "wedge / shim / step block" },
-        "stabilization strut": { translation: "стойка стабилизации", back: "stabilization strut" },
-        "prefabricated and timber shoring structures": { translation: "возводимые инвентарные и деревянные конструкции (шоринг)", back: "prefabricated and timber shoring structures" },
-        "SearchCam 3000": { translation: "телевизионный прибор поиска пострадавших SearchCam 3000", back: "SearchCam 3000" },
-        "Delsar LifeDetector LD3": { translation: "виброакустическое устройство Delsar LifeDetector LD3", back: "Delsar LifeDetector LD3" },
-"RD-400 radar detector": { translation: "радар-детектор РД-400", back: "RD-400 radar detector" },
-        "Hydraulic cutters": { translation: "Гидравлические ножницы", back: "Hydraulic cutters" },
-        "Hydraulic saws": { translation: "Гидравлические пилы (дисковые, цепные)", back: "Hydraulic saws" },
-        "Hydraulic spreaders": { translation: "Гидравлические расширители (спредеры)", back: "Hydraulic spreaders" },
-        "Hydraulic combination tools": { translation: "Комбинированные инструменты (кусачки-расширители)", back: "Hydraulic combination tools" },
-        "Hydraulic jacks": { translation: "Гидравлические домкраты (рамные подъемники)", back: "Hydraulic jacks" },
-        "Hydraulic rams": { translation: "Гидравлические силовые цилиндры (цилиндры высокого давления)", back: "Hydraulic rams" },
-        "Hydraulic power units": { translation: "Гидравлические станции", back: "Hydraulic power units" },
-        "High-pressure hoses": { translation: "Рукава высокого давления (РВД)", back: "High-pressure hoses" },
-        "Quick-release couplings": { translation: "Быстросъемные соединения", back: "Quick-release couplings" },
-        "Strut and accessory kits": { translation: "Комплекты упоров и насадок", back: "Strut and accessory kits" },
-        "Manual hydraulic pump": { translation: "Ручной гидравлический насос", back: "Manual hydraulic pump" },
-        "Electro-hydraulic power unit": { translation: "Электрогидравлическая станция", back: "Electro-hydraulic power unit" },
-        "Petrol-driven hydraulic power unit": { translation: "Бензогидравлическая станция", back: "Petrol-driven hydraulic power unit" },
-        "firefighter axe": { translation: "пожарный топор", back: "firefighter axe" },
-        "pickhead axe": { translation: "пожарный топор-кувалда", back: "pickhead axe" },
-        "pry bar": { translation: "пожарный лом", back: "pry bar" },
-        "pike pole": { translation: "пожарный багор", back: "pike pole" },
-        "Halligan bar": { translation: "инструмент Хулиган (Halligan Tool)", back: "Halligan bar" }
+        "power saw": { translation: "бензорез", back: "power saw", image:"https://kedasa.ru/upload/resize_cache/webp/iblock/435/09j7ee4vmf6dl9gfjblz1wa6paikcju0.webp" },
+        "ring saw": { translation: "кольцерез", back: "ring saw", image:"https://uniontool.ru/upload/iblock/a6c/a6c7c31c774215e08c3292315c0b6d81.png" },
+        "rescue chainsaw": { translation: "аварийно-спасательная бензопила", back: "rescue chainsaw", image:"https://sadteh24.ru/wa-data/public/shop/products/26/82/8226/images/18620/18620.970.jpg" },
+        "reciprocating saw": { translation: "сабельная пила", back: "reciprocating saw", image:"https://static.insales-cdn.com/images/products/1/4998/800977798/WeChat_Image_202107061225119.jpg" },
+        "rescue winch": { translation: "аварийно-спасательная лебёдка", back: "rescue winch", image:"https://sizcontract.ru/upload/iblock/551/55108725b48164519369aa01f1c77e3d.jpg" },
+        "concrete breaker": { translation: "бетонолом", back: "concrete breaker", image:"https://karavay-tula.ru/image/catalog/benzoinstrumentschas/otbojnyj/1.jpg" },
+        "rotary hammer": { translation: "перфоратор", back: "rotary hammer", image:"https://main-cdn.sbermegamarket.ru/mid9/hlr-system/158/591/258/710/141/425/100000379773b0.jpg" },
+        "diamond core drill": { translation: "алмазная дрель", back: "diamond core drill", image:"https://www.instar-yug.ru/upload/resize_cache/webp/iblock/1cc/1cc5d06fafa016d05b96fa2afb6b2487.webp" },
+        "hydraulic concrete crusher": { translation: "гидравлическая бетонодробилка", back: "hydraulic concrete crusher", image:"https://cdn.globalso.com/wxattachments/Hydraulic-concrete-crusher12.jpg" },
+        "hydraulic spreading wedge": { translation: "гидравлический клин", back: "hydraulic spreading wedge", image:"https://tgm-group.ru/upload/iblock/4c0/4c0918b7754aee69bb5d7150c583cbdb.jpg" },
+        "high-pressure pneumatic lifting bag": { translation: "пневматический домкрат высокого давления", back: "high-pressure pneumatic lifting bag", image:"https://www.spotvi.ru/netcat_files/multifile/2626/388/Komplekt.jpg" },
+        "low-pressure pneumatic lifting bag": { translation: "пневматический домкрат низкого давления", back: "low-pressure pneumatic lifting bag", image:"https://www.spotvi.ru/netcat_files/multifile/2626/pnevmaticheskiy_domkrat_nizkogo_davleniya_0_5_bar_l_1.jpg" },
+        "pneumatic sealing device": { translation: "пневматические заглушки, пластыри, клинья", back: "pneumatic sealing device", image:"" },
+        "wedge / shim / step block": { translation: "клинья, проставки, ступенчатые упоры", back: "wedge / shim / step block", image:"" },
+        "stabilization strut": { translation: "стойка стабилизации", back: "stabilization strut", image:"https://novmet.ru/wa-data/public/shop/products/04/49/14904/images/5919/5919.750x0.jpg" },
+        "prefabricated and timber shoring structures": { translation: "возводимые инвентарные и деревянные конструкции (шоринг)", back: "prefabricated and timber shoring structures", image:"https://27.mchs.gov.ru/uploads/resize_cache/news/2022-04-06/spasateli-mchs-rossii-osvaivayut-shoring-tehnologii_1649219181980149351__2000x2000.jpg" },
+        "SearchCam 3000": { translation: "телевизионный прибор поиска пострадавших SearchCam 3000", back: "SearchCam 3000", image:"https://www.datocms-assets.com/120614/1740570701-kit-1-color_edited.png" },
+        "Delsar LifeDetector LD3": { translation: "виброакустическое устройство Delsar LifeDetector LD3", back: "Delsar LifeDetector LD3", image:"https://lh3.googleusercontent.com/proxy/NKCEcjvgH-GdFZUjjYSINhcjnXH7QUnJozyT0TqayAtBxRaymceIv5iysqMIPrCtiTugSeIfZXwZ4kk5c9Tj1p8cMXCxbJ1MCtug" },
+"RD-400 radar detector": { translation: "радар-детектор РД-400", back: "RD-400 radar detector", image:"https://setek-online.kz/upload/iblock/936/zz5guz0ytguowdljeyvmumitrhwnm0ja.jpg" },
+        "Hydraulic cutters": { translation: "Гидравлические ножницы", back: "Hydraulic cutters", image:"https://go-zaschita.ru/wa-data/public/shop/products/61/16/1661/images/6935/6935.970.jpg"},
+        "Hydraulic saws": { translation: "Гидравлические пилы (дисковые, цепные)", back: "Hydraulic saws", image:"https://rusgidravlik.ru/images/items/115.jpg" },
+        "Hydraulic spreaders": { translation: "Гидравлические расширители (спредеры)", back: "Hydraulic spreaders", image:"https://k-spasatel.ru/image/cache/catalog/122/997252-500x500.jpg" },
+        "Hydraulic combination tools": { translation: "Комбинированные инструменты (кусачки-расширители)", back: "Hydraulic combination tools", image:"https://k-spasatel.ru/image/cache/catalog/122/997262-500x500.jpg" },
+        "Hydraulic jacks": { translation: "Гидравлические домкраты (рамные подъемники)", back: "Hydraulic jacks", image:"https://image.made-in-china.com/202f0j00btkojwdGbprT/10t-Long-Frame-Floor-Jack-Vehicle-Car-Garage-Hydraulic-Lift.webp" },
+        "Hydraulic rams": { translation: "Гидравлические силовые цилиндры (цилиндры высокого давления)", back: "Hydraulic rams", image:"https://static.insales-cdn.com/r/zsdSeK6x6d8/rs:fit:1000:1000:1/plain/images/products/1/1341/604988733/tsilindr-gidravlicheskiy-8-tonn-aet-t01108.jpg@jpg" },
+        "Hydraulic power units": { translation: "Гидравлические станции", back: "Hydraulic power units", image:"https://hydrostat.ru/img/service/power-unit/power-unit-1.png" },
+        "High-pressure hoses": { translation: "Рукава высокого давления (РВД)", back: "High-pressure hoses", image:"https://npo-pas.com/images/topics/rvd.png" },
+        "Quick-release couplings": { translation: "Быстросъемные соединения", back: "Quick-release couplings", image:"https://www.omsnab.com/wa-data/public/shop/products/97/02/297/images/772/772.970.jpg" },
+        "Strut and accessory kits": { translation: "Комплекты упоров и насадок", back: "Strut and accessory kits", image:"" },
+        "Manual hydraulic pump": { translation: "Ручной гидравлический насос", back: "Manual hydraulic pump", image:"https://sprut.com/components/com_jshopping/files/img_products/DSC_3901.gif" },
+        "Electro-hydraulic power unit": { translation: "Электрогидравлическая станция", back: "Electro-hydraulic power unit", image:"https://vsedlyasto.ru/upload/resize_cache/iblock/a40/mb5s5e0j92tqi098jdnc6rnz3s5l2r8u/1000_1000_1/ngje7008085-112022-6-scaled.jpg" },
+        "Petrol-driven hydraulic power unit": { translation: "Бензогидравлическая станция", back: "Petrol-driven hydraulic power unit", image:"https://cdn.vseinstrumenti.ru/images/goods/oborudovanie-dlya-avtoservisa-i-garazha/servisno-garazhnyj-instrument/1806172/560x504/53460439.jpg" },
+        "firefighter axe": { translation: "пожарный топор", back: "firefighter axe", image:"https://go-zaschita.ru/wa-data/public/shop/products/88/33/3388/images/8003/8003.970.jpg" },
+        "pickhead axe": { translation: "пожарный топор-кувалда", back: "pickhead axe", image:"https://www.unfire01.ru/uploads/tx_labshop/topor-kuvalda.jpg" },
+        "pry bar": { translation: "пожарный лом", back: "pry bar", image:"https://www.unfire01.ru/uploads/tx_labshop/lom_pozharnyi.jpg" },
+        "pike pole": { translation: "пожарный багор", back: "pike pole", image:"https://www.ogn66.ru/wp-content/uploads/2021/08/Bagor-pozharnyj-e1642764226301.jpg" },
+        "Halligan bar": { translation: "инструмент Хулиган (Halligan Tool)", back: "Halligan bar", image:"https://fireman.club/wp-content/uploads/2016/03/Huligan.png" }
     };
 
     // ---------- Модальное окно ----------
@@ -645,6 +777,123 @@ window.addEventListener('keydown', e => {
     }
 });
 </script>
+ 
+<script>
+/* --- АВТОПОДСКАЗКИ (БЕЗ $) --- */
+
+var input = document.getElementById("word");
+var suggestionsBox = document.getElementById("suggestions");
+
+// Функция похожего поиска + учёт опечаток
+function findMatches(str) {
+    str = str.toLowerCase();
+
+    var englishWords = Object.keys(dictionary);
+    var russianWords = englishWords.map(function(key) {
+        return dictionary[key].translation.toLowerCase();
+    });
+
+    var allWords = englishWords.concat(russianWords);
+
+    return allWords.filter(function(word) {
+        return (
+            word.indexOf(str) !== -1 ||
+            levenshtein(word, str) <= 2
+        );
+    }).slice(0, 10);
+}
+
+// Алгоритм Левенштейна (опечатки)
+function levenshtein(a, b) {
+    var matrix = [];
+    var i, j;
+
+    for (i = 0; i <= b.length; i++) {
+        matrix[i] = [i];
+    }
+    for (j = 0; j <= a.length; j++) {
+        matrix[0][j] = j;
+    }
+
+    for (i = 1; i <= b.length; i++) {
+        for (j = 1; j <= a.length; j++) {
+            matrix[i][j] = b.charAt(i - 1) === a.charAt(j - 1)
+                ? matrix[i - 1][j - 1]
+                : Math.min(
+                    matrix[i - 1][j] + 1,
+                    matrix[i][j - 1] + 1,
+                    matrix[i - 1][j - 1] + 1
+                );
+        }
+    }
+    return matrix[b.length][a.length];
+}
+
+// Отображение подсказок
+input.addEventListener("input", function () {
+    var text = input.value.trim();
+
+    if (!text) {
+        suggestionsBox.style.display = "none";
+        return;
+    }
+
+    var matches = findMatches(text);
+
+    if (!matches.length) {
+        suggestionsBox.style.display = "none";
+        return;
+    }
+
+    var html = "";
+    for (var i = 0; i < matches.length; i++) {
+        var word = matches[i].replace(/'/g, "\\'");
+        html += "<div class='suggest-item' " +
+                "style='padding: 8px; cursor: pointer;'" +
+                " onclick=\"selectSuggestion('" + word + "')\">" +
+                word +
+                "</div>";
+    }
+
+    suggestionsBox.innerHTML = html;
+    suggestionsBox.style.display = "block";
+});
+
+// Подстановка выбранного слова
+function selectSuggestion(word) {
+    input.value = word;
+    suggestionsBox.style.display = "none";
+}
+</script>
+
+<script>
+
+// --- Открытие "О приложении" ---
+document.querySelector('a[href="#home-overlay"]').addEventListener('click', function(e){
+    e.preventDefault();
+    document.getElementById("home-overlay").classList.add("active");
+    document.body.style.overflow = "hidden";
+});
+
+// --- Открытие "О нас" ---
+document.querySelector('a[href="#about-us"]').addEventListener('click', function(e){
+    e.preventDefault();
+    document.getElementById("about-page").classList.add("active");
+    document.body.style.overflow = "hidden";
+});
+
+
+
+// --- Закрытие по Esc ---
+window.addEventListener("keydown", function(e){
+    if (e.key === "Escape") {
+        document.querySelectorAll(".about-overlay.active")
+            .forEach(ov => ov.classList.remove("active"));
+        document.body.style.overflow = "";
+    }
+});
+
+</script>
 
 <script>
 if ("serviceWorker" in navigator) {
@@ -653,6 +902,36 @@ if ("serviceWorker" in navigator) {
         .then(() => console.log("SW registered"))
         .catch(err => console.error("SW error:", err));
 }
+</script>
+
+<div id="home-overlay" class="about-overlay">
+  <button class="close-about">← Назад</button>
+  <div class="about-content">
+    <h2>О приложении</h2>
+    <p>
+      Наше приложение создано, чтобы облегчить перевод сложных терминов и ускорить
+      вашу работу. Оно позволяет находить слова по любой части слова, 
+      исправлять ошибки ввода и моментально подсказывать возможные варианты.
+    </p><br>
+    <p>
+      Функциональность построена так, чтобы вы могли сконцентрироваться на задаче, 
+      а поиск занимал минимум времени. Просто начните ввод — и приложение само 
+      подскажет, что вы ищете.
+    </p><br>
+    <p>
+      Приложение работает оффлайн, устанавливается как PWA и обновляется автоматически.
+    </p>
+  </div>
+</div>
+
+<script>
+    // --- Закрытие всех overlay по кнопке Назад ---
+document.querySelectorAll(".close-about").forEach(btn => {
+    btn.addEventListener("click", function(){
+        btn.closest(".about-overlay").classList.remove("active");
+        document.body.style.overflow = "";
+    });
+});
 </script>
 
 
