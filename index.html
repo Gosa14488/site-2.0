@@ -419,13 +419,47 @@
             font-size: 16px;
         }
 
-        /* Мобильная адаптация (небольшая) */
-        @media (max-width: 600px) {
-            section.hero h2 { font-size: 28px; }
-            section.hero p { font-size: 20px; }
-            #box { width: 90%; padding: 20px; }
-            .features { gap: 20px; }
-        }
+        /* Адаптация карточек под мобильные устройства */
+@media (max-width: 600px) {
+
+    .features {
+        flex-direction: column;     /* карточки в столбик */
+        align-items: center;
+        gap: 15px;                  /* расстояние между карточками */
+    }
+
+    .feature {
+        width: 90%;                 /* карточка почти на весь экран */
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .feature img {
+        width: 40px;                /* уменьшить иконки */
+        height: 40px;
+    }
+
+    h2 {
+        font-size: 22px;            /* заголовок меньше */
+        text-align: center;
+    }
+
+    #box {
+        width: 90%;                 /* уменьшить переводчик */
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    #box input {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    #box button {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+}
     </style>
 </head>
 <body>
