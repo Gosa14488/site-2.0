@@ -420,8 +420,21 @@
         }
 
         /* Адаптация карточек под мобильные устройства */
-@media (max-width: 400px) {
+@media  (max-width: 600px) {
+    .hero {
+        width: 100% !important;
+        padding: 20px !important;
+    }
 
+    header, nav, ul, li {
+        max-width: 100% !important;
+        flex-wrap: wrap !important;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
     /* Заголовок */
     #about h2 {
         font-size: 22px;
