@@ -420,44 +420,48 @@
         }
 
         /* Адаптация карточек под мобильные устройства */
-@media (max-width: 600px) {
+@media (max-width: 400px) {
 
-    .features {
-        flex-direction: column;     /* карточки в столбик */
-        align-items: center;
-        gap: 15px;                  /* расстояние между карточками */
-    }
-
-    .feature {
-        width: 90%;                 /* карточка почти на весь экран */
-        padding: 15px;
-        font-size: 14px;
-    }
-
-    .feature img {
-        width: 40px;                /* уменьшить иконки */
-        height: 40px;
-    }
-
-    h2 {
-        font-size: 22px;            /* заголовок меньше */
+    /* Заголовок */
+    #about h2 {
+        font-size: 22px;
         text-align: center;
+        margin-bottom: 15px;
     }
 
-    #box {
-        width: 90%;                 /* уменьшить переводчик */
+    /* Контейнер карточек */
+    .features {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    /* Каждая карточка */
+    .feature {
+        width: 85%;
         padding: 15px;
-        margin-top: 20px;
+        border-radius: 12px;
+        font-size: 14px; /* уменьшение общего размера текста */
     }
 
-    #box input {
-        font-size: 16px;
-        padding: 12px;
+    /* Иконки */
+    .feature img {
+        width: 35px;
+        height: 35px;
+        margin-bottom: 10px;
     }
 
-    #box button {
-        font-size: 16px;
-        padding: 10px 15px;
+    /* Заголовки карточек */
+    .feature h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    /* Текст внутри карточки */
+    .feature p {
+        font-size: 14px;
+        line-height: 1.4;
     }
 }
     </style>
