@@ -360,138 +360,145 @@
     color: #fff;
 }
 
-/* ====== Блок "Как работает приложение" ====== */
-.how-app-works {
-    width:100%;
-    max-width: 100%;
-    margin: 60px auto;
-    text-align: center;
-    padding:50px  20px;
+/* ---------------------------
+   БЛОК: «Как работает приложение»
+   Универсальная адаптивная версия
+--------------------------- */
 
-box-sizing: border-box;   /* ← ОБЯЗАТЕЛЬНО */
-    overflow-x: hidden;       /* ← ОБЯЗАТЕЛЬНО */
-    
-    background: linear-gradient(135deg, #7eb8fd, #02479d);
-    border-radius: 25px;
+
+/* Контейнер секции */
+.how-app-works {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
 }
 
 .how-app-works h2 {
+    text-align: center;
+    color: #ff7a00;
     font-size: 32px;
     margin-bottom: 40px;
-    background: linear-gradient(90deg, #FFE53B, #FF2525);
-    -webkit-background-clip: text;
-     -webkit-text-fill-color: transparent;
 }
 
-/* Контейнер с карточками */
+
+/* Контейнер карточек */
 .steps {
     display: flex;
-    justify-content: center;
-    gap: 25px;
     flex-wrap: wrap;
-    width: 100%;
+    justify-content: center;
     align-items: stretch;
-
-    max-width: 100%;
-    box-sizing: border-box;   /* ← важно для мобильных */
+    gap: 40px;
+    width: 100%;
 }
 
-/* Каждая карточка — фиксированная одинаковая высота */
+
+/* Карточка */
 .step {
     background: #ffffff;
-    padding: 50px;
-    border-radius: 30px;
-
-       width: 100%;
-    max-width: 280px;
-    box-sizing: border-box;   /* ← важно! */          /* одинаковая высота */
-
-    /* Убираем фиксированную высоту */
-    height: auto;
-    max-height: 420px;
-    overflov:hidden;
+    border-radius: 25px;
+    padding: 40px;
+    max-width: 330px;
+    width: 100%;
+    box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* выравнивание */
+    justify-content: flex-start;
     align-items: center;
 
     box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.08),
-        0 3px 10px rgba(0, 0, 0, 0.05);
+        0 15px 25px rgba(0, 0, 0, 0.08),
+        0 10px 20px rgba(0, 0, 0, 0.05);
     text-align: center;
 
-    transition: none;
-    transform: none;
+    transition: transform .2s ease, box-shadow .2s ease;
 }
 
-/* Hover — плавный подъём */
-.step:hover {
-    transform: none;
-    box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.12),
-        0 5px 15px rgba(0, 0, 0, 0.08);
+/* Ховер на ПК */
+@media (hover: hover) {
+    .step:hover {
+        transform: translateY(-5px);
+        box-shadow:
+            0 20px 35px rgba(0, 0, 0, 0.10),
+            0 10px 25px rgba(0, 0, 0, 0.07);
+    }
 }
 
-.step .icon {
-    font-size: 40px;
-    margin-bottom: 15px;
-}
-
+/* Заголовок карточки */
 .step h3 {
-    font-size: 25px;
-    margin-bottom: 10px;
-}
-
-.step p {
     font-size: 20px;
-    line-height: 1.45;
-    opacity: 0.85;
+    margin-bottom: 12px;
+    color: #333;
 }
 
-        /* 🔹 Подвал */
-        footer {
-            background: #000;
-            color: white;
-            text-align: center;
-            padding: 5px 0;
-            width: 100%;
-            font-size: 16px;
-        }
+/* Текст */
+.step p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.45;
+}
 
-        /* Адаптация карточек под мобильные устройства */
-/* Мобильная адаптация */
-@media (max-width: 600px) {
+
+
+/* ---------------------------
+   Мобильная адаптация (до 880px)
+--------------------------- */
+@media (max-width: 880px) {
+
     .how-app-works {
-        max-width: 100%;     /* Блок теперь под ширину экрана */
-        margin: 20px auto;   /* Меньше отступов */
-        padding: 25px 15px;  /* Уменьшить внутренние отступы */
-        border-radius: 15px; /* Мягче на маленьком экране */
-    }
-    .features{
-        gap:20px;
-    }
-
-     .steps {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        width: 100%;
-    }
-
-    .step {
-        width: 100%;            /* ← Заменено: было 90%, вызывает баг */
-    max-width: 280px;       /* ← Заменено: фикс + безопасно для Я.Браузера */
-    padding: 20px;
-    height: auto;           /* ← Добавлено: фикс высоты больше не нужен */
-    flex: none;             /* ← Добавлено: предотвращает растягивание */
-    box-sizing: border-box;
+        padding: 30px 15px;
     }
 
     .how-app-works h2 {
-        font-size: 22px;
+        font-size: 26px;
     }
 
+    .steps {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .step {
+        max-width: 280px;
+        width: 100%;
+        padding: 25px 15px;
+        border-radius: 18px;
+    }
+
+    .step h3 {
+        font-size: 18px;
+    }
+
+    .step p {
+        font-size: 15px;
+    }
+}
+
+
+
+/* ---------------------------
+   ПК-адаптация (от 881px)
+--------------------------- */
+@media (min-width: 881px) {
+
+    .steps {
+        flex-direction: row;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .step {
+        max-width: 330px !important;
+        padding: 40px !important;
+        height: auto !important;
+    }
+
+    .how-app-works h2 {
+        font-size: 32px;
+    }
+}
    
 }
     </style>
