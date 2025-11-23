@@ -3,7 +3,7 @@ const CACHE_NAME = "fireguard-cache-v7";
 const ASSETS = [
     "/site-2.0/",
     "/site-2.0/index.html",
-    "/app.js",
+    "/site-2.0/app.js",
     "/site-2.0/style.css",
     "/site-2.0/manifest.json",
     "/site-2.0/icon-192.png",
@@ -56,6 +56,7 @@ self.addEventListener("fetch", event => {
         })
     );
 });
+
 
 
 
