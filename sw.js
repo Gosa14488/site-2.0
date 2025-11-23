@@ -6,8 +6,8 @@ const ASSETS = [
     "/site-2.0/app.js",
     "/site-2.0/style.css",
     "/site-2.0/manifest.json",
-    "/site-2.0/icon-192.png",
-    "/site-2.0/icon-512.png"
+    "/site-2.0/icon-192x192.png",
+    "/site-2.0/icon-512x512.png"
 ];
 
 // INSTALL — кешируем файлы
@@ -56,6 +56,7 @@ self.addEventListener("fetch", event => {
         })
     );
 });
+
 
 
 
