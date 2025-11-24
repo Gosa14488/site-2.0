@@ -514,6 +514,26 @@
         font-size: 32px;
     }
 }
+        #update-banner {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a1a;
+    color: white;
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    font-size: 18px;
+    width: 380px;       /* ← Размеры!! */
+    height: auto;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
    
 }
     </style>
@@ -1003,22 +1023,8 @@ document.querySelectorAll(".close-about").forEach(btn => {
 </script>
 
 
-    <div id="update-banner" style="
-    display:none;
-    position:fixed;
-    bottom:20px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#1a1a1a;
-    color:white;
-    padding:25px 35px;
-    border-radius:12px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.4);
-    font-size:17px;
-    align-items:center;
-    gap:15px;
-    z-index:9999;
-">
+    <div id="update-banner" >
+        
     <span style = "margin-right: 15px; font-size: 16px;">🔥 Доступно обновление FireGuard</span>
     <button id="update-btn" style="
         padding:12px 24px;
