@@ -1,13 +1,12 @@
-const CACHE_NAME = "fireguard-cache-v8";
+const CACHE_NAME = "fireguard-cache-v2";
 
 const ASSETS = [
     "/site-2.0/",
     "/site-2.0/index.html",
     "/site-2.0/app.js",
-    "/site-2.0/style.css",
     "/site-2.0/manifest.json",
-    "/site-2.0/icon-192x192.png",
-    "/site-2.0/icon-512x512.png"
+    "/site-2.0/icon-192.png",
+    "/site-2.0/icon-512.png"
 ];
 
 // INSTALL
@@ -52,3 +51,4 @@ self.addEventListener("fetch", event => {
         })()
     );
 });
+
