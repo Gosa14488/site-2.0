@@ -6,7 +6,10 @@ const ASSETS = [
     "/site-2.0/app.js",
     "/site-2.0/manifest.json",
     "/site-2.0/icon-192.png",
-    "/site-2.0/icon-512.png"
+    "/site-2.0/icon-512.png",
+
+    "/site-2.0/images/gorenie-1.jpg",
+    "/site-2.0/images/fire.jpg",
 ];
 
 // INSTALL
@@ -36,21 +39,46 @@ self.addEventListener("activate", event => {
     );
 });
 
-// FETCH — network-first
+// FETCH
 self.addEventListener("fetch", event => {
+    const request = event.request;
+
+    //  Картинки — Cache First 
+    if (request.destination === "image") {
+        event.respondWith(
+            (async () => {
+                const cache = await caches.open("images-cache");
+                const cached = await cache.match(request);
+
+                if (cached) return cached; // уже есть в кеше
+
+                try {
+                    const network = await fetch(request);
+                    cache.put(request, network.clone()); // сохранить картинку
+                    return network;
+                } catch (e) {
+                    return cached || Response.error();
+                }
+            })()
+        );
+        return; // важный момент! дальше не идём
+    }
+
+    // Всё остальное — ваш network-first 
     event.respondWith(
         (async () => {
             try {
-                const network = await fetch(event.request);
+                const network = await fetch(request);
                 const cache = await caches.open(CACHE_NAME);
-                cache.put(event.request, network.clone());
+                cache.put(request, network.clone());
                 return network;
             } catch {
-                return caches.match(event.request);
+                return caches.match(request);
             }
         })()
     );
 });
+
 
 
 
